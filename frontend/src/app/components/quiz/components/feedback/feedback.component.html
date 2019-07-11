@@ -1,0 +1,15 @@
+<div class="container">
+  <div *ngIf="data?.article" class="row">
+    <p>Para saber mais sobre este tema, acesse este artigo:</p>
+    <a href="{{data?.article}}" target="_blank">{{data?.article | slice:0:30}}&hellip;</a>
+  </div>
+  <div *ngIf="data?.descriptive_text" class="row">
+    <p>Explicação sobre a pergunta</p>
+    <p>{{data?.descriptive_text}}</p>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+        <button style="margin: auto;display: block;" mat-raised-button color="primary" (click)="onClickClose()">Entendi!</button>
+    </div>
+  </div>
+</div>

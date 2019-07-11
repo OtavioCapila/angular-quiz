@@ -1,0 +1,97 @@
+* {
+  overflow-y: hidden;
+}
+
+#logoDiv {
+  overflow: hidden;
+}
+
+#rankingCard {
+  border-radius: 0;
+  overflow-x: hidden;
+  background-color: #007BFF;
+  color: white;
+  max-height: 130px
+}
+
+#logo {
+  position: relative;
+  float: right;
+  height: 10vh;
+  left: 15px;
+  top: 27px;
+}
+
+#ranking {
+  width: 100vw;
+  height: 100vh;
+  border-radius: 0;
+  margin-bottom: 50px;
+}
+
+#divisor {
+  top: 17px;
+  right: 8px;
+  background-color: white;
+  width: 113px;
+  height: 3px;
+  border-radius: 10px;
+  position: relative;
+}
+
+h4,
+h5,
+#positionText,
+#totalPoints {
+  color: white;
+}
+
+#totalPoints {
+  position: relative;
+  top: 56px;
+  left: 10px;
+  font-size: 26px;
+}
+
+#topValue {
+  left: 10px;
+  font-size: 18px;
+  top: 17px;
+  position: relative;
+}
+
+#positionText {
+  font-size: 19px;
+  position: relative;
+  left: 17px;
+  bottom: 19px;
+}
+
+#lowerValue {
+  position: relative;
+  top: 16px;
+  font-size: 18px;
+}
+
+#positionSpan {
+  position: relative;
+  left: 20px;
+  font-size: 45px;
+}
+
+.btnGoBack {
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+}
+
+.btn-block {
+  font-size: 25px
+}
+
+#yourPosition {
+  font-size: 15px;
+  left: 10px;
+  position: relative;
+  top: 10px;
+}

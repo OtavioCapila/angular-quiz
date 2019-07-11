@@ -1,0 +1,16 @@
+h1{
+    text-align: center;
+}
+
+#header{
+    margin-top: 50px;
+}
+
+/deep/ .test-class {
+    // height: 38vh;
+    width: 100%;
+    margin: auto;
+    display: block;
+    //margin-top: 20px;
+    position: relative;
+}

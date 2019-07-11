@@ -1,0 +1,110 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+      <form [formGroup]="questionForm">
+        <div style="color:black;padding: 20px;" class="card">
+          <h5 class="card-title">Cadastrar Nova Pergunta</h5>
+          <div class="form-group row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Pergunta</label>
+            <div class="col-sm-10">
+              <textarea type="text" class="form-control" placeholder="Digite aqui a pergunta"
+                formControlName="question"></textarea>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Respostas</label>
+            <div class="col-sm-10">
+              <div formArrayName="anwser_options" *ngFor="let item of questionArray.controls; let i = index;">
+                <div [formGroupName]="i">
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <input class="radioCorrect" type="radio" name="correct_anwser" (change)="onCheckCorrectAnwser(i)">
+                      <span class="input-group-text">{{i+1}}</span>
+                    </div>
+                    <textarea formControlName="anwser" class="form-control"
+                      placeholder="Digite a alternativa"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <button class="btn btn-primary" (click)="addItem()" style="position: relative;float: right">Adicionar
+                outra opção</button>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Valor</label>
+            <div class="col-sm-10">
+              <input type="number" class="form-control" placeholder="Digite aqui o valor em pontos dessa pergunta"
+                formControlName="points">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Artigo</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control"
+                placeholder="Digite aqui o link para o artigo relacionado a esta pergunta" formControlName="article">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Texto Descritivo</label>
+            <div class="col-sm-10">
+              <textarea type="number" class="form-control" placeholder="Digite aqui o texto descritivo"
+                formControlName="descriptive_text"></textarea>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <button *ngIf="!showEditQuestionBtn" class="btn btn-success" style="position: relative;float:right" (click)="onClickSave()"
+                [disabled]="!questionForm.valid">Salvar Pergunta <i class="fas fa-save"></i></button>
+                <button *ngIf="showEditQuestionBtn" class="btn btn-success" style="position: relative;float:right" (click)="onClickSaveEditedQuestion()"
+                [disabled]="!questionForm.valid">Salvar Edição <i class="fas fa-save"></i></button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card" style="color:black;padding: 20px;margin-top: 20px;margin-bottom: 20px">
+        <h4>Todas as questões cadastradas - {{allQuestions?.length}}</h4>
+        <mat-accordion class="example-headers-align">
+          <mat-expansion-panel *ngFor="let quest of allQuestions;let i = index;" [expanded]="step === i"
+            (opened)="setStep(i)">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{quest.question | slice:0:30}}[...]
+              </mat-panel-title>
+              <mat-panel-description>
+                {{quest?.points}}pts
+                <mat-icon>question_answer</mat-icon>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <label for="question">Pergunta:</label>
+            <span name="question">{{quest?.question}}</span>
+            <br>
+            <ul class="form-group">
+              <li [ngStyle]="{'color':anwser.correct_anwser === 1 ? 'green' : 'red' }" class="list-group-item"
+                *ngFor="let anwser of quest.anwser_options;let index = index">{{index+1}}) {{anwser.anwser}}</li>
+            </ul>
+            <span>Pontuação: {{quest?.points}}pts</span><br>
+            <span *ngIf="quest?.article">Artigo: <a href="{{quest?.article}}"
+                target="_blank">{{quest?.article}}</a></span>
+            <span *ngIf="quest?.descriptive_text">Texto Descritivo: {{quest?.descriptive_text}}</span>
+            <div class="row">
+              <div class="col-lg-12">
+                  <button matTooltip="Apagar esta pergunta" mat-mini-fab color="warn" style="position: relative;float: right" (click)="onClickDeleteQuestion(quest?._id)"><mat-icon>delete_forever</mat-icon></button>
+                  <button matTooltip="Editar esta pergunta" mat-mini-fab color="primary" style="position: relative;float: right" (click)="onClickEditQuestion(quest)"><i class="fas fa-pencil-alt"></i></button>
+              </div>
+            </div>
+            <mat-action-row>
+              <button *ngIf="i >= 1" mat-button color="warn" (click)="prevStep()">Anterior</button>
+              <button *ngIf="i < allQuestions.length-1" mat-button color="primary" (click)="nextStep()">Próxima</button>
+            </mat-action-row>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+    </div>
+  </div>
+</div>

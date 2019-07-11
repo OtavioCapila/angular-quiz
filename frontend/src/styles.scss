@@ -1,0 +1,23 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~ngx-toastr/toastr';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+body {
+  background: url('./assets/background/bg.png') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100vh;  
+  background-color: #2B84F0;
+  color: white;
+  font-family: 'Titillium Web', sans-serif;
+}
+
+.mat-checkbox-layout {
+  white-space: normal !important;
+  }
+  
+  .mat-radio-label {
+  white-space: normal !important;
+  }

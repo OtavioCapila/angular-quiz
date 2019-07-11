@@ -1,0 +1,45 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="preferences">
+        <h5>Dos temas abaixo, quais te despertam interesse? (Marque quantas opções desejar)</h5>
+        <section class="example-section">
+          <mat-checkbox value="Otimização de forno"
+            (change)="onSelectPreference({status:$event.checked,value:$event.source.value})" [labelPosition]="position">
+            A) Otimização de forno
+          </mat-checkbox>
+        </section>
+
+        <section>
+          <mat-checkbox value="CO e NOx"
+            (change)="onSelectPreference({status:$event.checked,value:$event.source.value})" [labelPosition]="position">
+            B) CO e NOx
+          </mat-checkbox>
+        </section>
+
+        <section>
+          <mat-checkbox value="Inovação na indústria"
+            (change)="onSelectPreference({status:$event.checked,value:$event.source.value})" [labelPosition]="position">
+            C) Inovação na indústria
+          </mat-checkbox>
+        </section>
+
+        <section>
+          <mat-checkbox value="Otimização de calcinador"
+            (change)="onSelectPreference({status:$event.checked,value:$event.source.value})" [labelPosition]="position">
+            D) Otimização de calcinador
+          </mat-checkbox>
+        </section>
+      </div>
+      <div class="col-lg-12" style="margin-top: 20px;">
+        <button style="margin:auto;display:block;color:black;" mat-raised-button [disabled]="!userPreferences[0]"
+          (click)="onClickSend()">
+          <p *ngIf="!sendingData" style="margin-bottom: 0;color:black;"><i style="color:black;" class="fas fa-play"></i>
+          </p>
+          <i *ngIf="sendingData" class="fas fa-spinner fa-spin"></i>
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>

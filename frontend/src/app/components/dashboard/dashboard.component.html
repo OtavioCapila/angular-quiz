@@ -1,0 +1,34 @@
+<div class="card" id="rankingCard">
+  <div class="row">
+    <div class="col-3">
+      <span id="yourPosition">Sua Posição</span><br>
+      <span id="positionSpan">{{myPosition+1 || 0}}ª</span><br>
+      <span id="positionText">Posição</span>
+    </div>
+    <div class="col-5">
+      <span id="totalPoints">{{myData?.total_points || 0}} pontos</span><br>
+      <!-- <span id="topValue">{{myData?.total_correct_anwsered_questions || 'Carregando'}} Acertos</span><br>
+        <div id="divisor"></div>
+        <span id="lowerValue">{{myData?.questions_anwsered?.length || 'Carregando'}} Respostas</span> -->
+    </div>
+    <div class="col-4" id="logoDiv">
+      <img id="logo" src="./assets/logo/logo.png">
+    </div>
+  </div>
+
+</div>
+<div class="card" id="ranking">
+  <ngx-charts-bar-horizontal [results]="allUsersModified" [showXAxisLabel]="true" [showYAxisLabel]="true"
+    [showDataLabel]="true" [customColors]="customColors" [scheme]="colorScheme" [xAxis]="true" [barPadding]="6"
+    [yAxis]="true" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"></ngx-charts-bar-horizontal>
+</div>
+
+
+<div *ngIf="showButtonGoBack" class="card" class="btnGoBack">
+  <button style="position:relative;float:right" class="btn btn-primary btn-block" (click)="onClickGoBack()">Retornar
+    para o Quiz</button>
+</div>
+<div *ngIf="!showButtonGoBack" class="card" class="btnGoBack">
+  <button style="position:relative;float:right" class="btn btn-primary btn-block" (click)="onClickGoToQuiz()">Ir para o
+    Quiz</button>
+</div>

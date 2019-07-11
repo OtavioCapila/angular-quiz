@@ -1,0 +1,30 @@
+<div class="container-fluid">
+  <h1 style="text-align: center">Área restrita aos administradores</h1>
+  <div class="row">
+    <div class="container-fluid">
+      <form [formGroup]="adminLogin">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="far fa-user"></i></span>
+              </div>
+              <input autocomplete="true" type="text" class="form-control" placeholder="Email" formControlName="email">
+            </div>
+          </div>
+          <div class="col-lg-12">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-key"></i></span>
+              </div>
+              <input type="password" class="form-control" placeholder="Senha" formControlName="password">
+            </div>
+          </div>
+          <div class="col-lg-12">
+            <button class="btn btn-outline-light" (click)="submitForm()">Acessar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

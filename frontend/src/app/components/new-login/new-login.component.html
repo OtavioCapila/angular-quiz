@@ -1,0 +1,30 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+      <div id="header">
+        <h1>Bem Vindo ao <br>Trie Quiz</h1>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <form>
+        <div class="row">
+          <div class="col-lg-12">
+            <label>Email ou Código de Acesso</label>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="far fa-user"></i></span>
+              </div>
+              <input autocomplete="true" type="text" class="form-control" placeholder="Email ou Código" [(ngModel)]="userInput" [ngModelOptions]="{standalone: true}">
+            </div>
+          </div>
+          <div class="col-lg-12">
+              <button class="btn btn-primary btn-raised" style="position: relative;float: right" (click)="onClickRegister()">Cadastrar</button>
+            <button class="btn btn-success btn-raised" style="position: relative;float: left" [disabled]="!userInput" (click)="onClickSubmit()">Acessar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

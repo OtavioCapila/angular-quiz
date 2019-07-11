@@ -1,0 +1,75 @@
+<div [hidden]="showRanking" class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+      <mat-horizontal-stepper *ngIf="!showLastScreen" [linear]="isLinear" #stepper style="
+      background-color: rgba(0, 0, 0, 0);">
+        <mat-step *ngFor="let step of AllQuestionsFiltered;let index = index; let last = last;">
+          <!-- <ng-template matStepLabel>Questão - {{index+1}}</ng-template> -->
+          <div *ngIf="!showLastScreen" class="quiz">
+            <h5>{{step?.question}}</h5>
+            <div>
+              <mat-list *ngFor="let question of step?.anwser_options;let i = index;">
+                <mat-radio-button [disabled]="showCorrectAnwser" class="example-radio-button"
+                  (change)="onChangeAnwserSelected(question,index)">
+                  <span *ngIf="!showCorrectAnwser"> {{question?.anwser}}</span>
+                  <span *ngIf="showCorrectAnwser"
+                    [ngStyle]="{'color':question.correct_anwser === 1 ? 'white' : 'gray' }">
+                    {{question?.anwser}}</span>
+                </mat-radio-button>
+
+              </mat-list>
+            </div>
+          </div>
+          <div style="margin-top: 20px;">
+            <button style="margin:auto;display:block;color:black;" *ngIf="!showCorrectAnwser" mat-raised-button
+              [disabled]="disableSendQuestionBtn" (click)="verifySelectedQuestion()">
+              <p *ngIf="!sendingData" style="margin-bottom: 0;color:black;"><i style="color:black;"
+                  class="fas fa-play"></i></p>
+              <i *ngIf="sendingData" class="fas fa-spinner fa-spin"></i>
+            </button>
+            <button style="position:relative;float:right;color:black;" *ngIf="showCorrectAnwser"
+              [hidden]="stepper.selectedIndex === stepper._steps.length-1" mat-raised-button
+              (click)="goForward(stepper)" (click)="onClickNextQuestion()"><i style="color:black;"
+                class="fas fa-forward"></i></button>
+            <button style="position:relative;float:right;color:black;"
+              *ngIf="showCorrectAnwser && stepper.selectedIndex === stepper._steps.length-1" [hidden]="showLastScreen"
+              mat-raised-button (click)="goForward(stepper)" (click)="onAnwserLastQuestion()"><i style="color:black;"
+                class="fas fa-forward"></i></button>
+          </div>
+        </mat-step>
+      </mat-horizontal-stepper>
+      <div id="parent" *ngIf="showLastScreen">
+        <div class="row">
+          <div class="col-lg-12" id="textDiv">
+            <p style="margin-bottom: 0;color: yellow;text-align: center;font-size: 20px">Parabéns {{userData?.name}}!
+            </p>
+            <p style="margin-bottom: 0;color: white;text-align: center;font-size: 20px">Você chegou ao final do game!
+            </p><br>
+            <!-- <p style="margin-bottom: 0;color: white;text-align: center;font-weight: bold;font-size: 22px">Passe no
+              estande da Trie Engenharia<br> para receber o seu brinde.</p> -->
+            <p style="margin-bottom: 0;color: white;text-align: center;font-weight: bold;font-size: 21px">Veja abaixo
+              alguns artigos relacionados<br> as perguntas respondidas no Quiz</p>
+            <ul class="list-group">
+              <li class="list-group-item" *ngFor="let item of articleArray | keyvalue">
+                <p style="color: black" class="mb-0">{{item.key}}</p>
+                <p style="color: black" class="mb-0" *ngFor="let article of item.value">
+                  <a style="color:blue" href="{{article.article}}" target="_blank">{{article.article | slice:0:40}}</a>
+                </p>
+              </li>
+            </ul>            
+            <img id="logo" src="./assets/logo/logo.png">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div [hidden]="showRanking" *ngIf="loadingQuestions" class="row">
+    <div class="col-lg-12">
+      <h5 style="text-align: center;">Carregando Quiz</h5>
+      <mat-spinner style="margin: auto;display: block;"></mat-spinner>
+    </div>
+  </div>
+</div>
+<app-dashboard *ngIf="showRanking" [showButtonGoBack]="showButtonGoBack"
+  (userClickedGoBack)="handlerUserClickedGoBack($event)"></app-dashboard>
